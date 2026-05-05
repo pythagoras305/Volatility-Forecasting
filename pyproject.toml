@@ -1,0 +1,52 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "equity-vol-forecaster"
+version = "0.1.0"
+description = "Next-day realized volatility forecaster for S&P 500 equities"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "yfinance>=0.2.40",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "scikit-learn>=1.4.0",
+    "lightgbm>=4.3.0",
+    "optuna>=3.6.0",
+    "torch>=2.2.0",
+    "arch>=6.3.0",
+    "mlflow>=2.12.0",
+    "pyarrow>=15.0.0",
+    "requests>=2.31.0",
+    "lxml>=5.1.0",
+    "html5lib>=1.1",
+    "tabulate>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.0",
+    "ruff>=0.4.0",
+    "black>=24.4.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
